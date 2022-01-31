@@ -1,39 +1,41 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <%= link_to 'Finance Tracker', root_path, class:"navbar-brand" %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <div class="container">
+    <%= link_to 'Finance Tracker', root_path, class:"navbar-brand font-weight-bold" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to 'Example', '#', class:"nav-link" %>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-    <ul class="navbar-nav navbar-right">
-      <% if user_signed_in? %>
-        <li class="nav-item mx-1">
-          <%= link_to 'Logout', destroy_user_session_path, class:"btn btn-danger" %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to 'Example', '#', class:"nav-link" %>
         </li>
-      <% else %>
-        <li class="nav-item mx-1">
-          <%= link_to 'Login', new_user_session_path, class:"btn btn-success" %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
         </li>
-        <li class="nav-item mx-1">
-          <%= link_to 'Sign Up', new_user_registration_path, class:"btn btn-primary" %>
-        </li>
-      <% end %>
-    </ul>
+      </ul>
+      <ul class="navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li class="nav-item mx-1">
+            <%= link_to 'Logout', destroy_user_session_path, class:"btn btn-danger" %>
+          </li>
+        <% else %>
+          <li class="nav-item mx-1">
+            <%= link_to 'Login', new_user_session_path, class:"btn btn-success" %>
+          </li>
+          <li class="nav-item mx-1">
+            <%= link_to 'Sign Up', new_user_registration_path, class:"btn btn-primary" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </nav>
