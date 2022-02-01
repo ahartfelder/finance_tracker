@@ -8,4 +8,10 @@ jQuery: 'jquery',
 Popper: ['popper.js', 'default']
 }));
 
+environment.config.merge({
+    performance: {
+      hints: false
+    }
+  })
+
 module.exports = environment
