@@ -10,9 +10,10 @@
       </tr>
     </thead>
     <tbody>
+      <% count = 0 %>
       <% @stocks.each do |stock| %>
         <tr>
-          <td>1</td>
+          <td><%= count += 1 %></td>
           <td><%= stock.ticker %></td>
           <td><%= stock.name %></td>
           <td>$<%= stock.last_price %></td>
