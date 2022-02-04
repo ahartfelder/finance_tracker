@@ -6,7 +6,7 @@
         <th>Ticker</th>
         <th>Company Name</th>
         <th>Price</th>
-        <th>Action</th>
+        <th colspan="2" class="text-center">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -16,8 +16,20 @@
           <td><%= count += 1 %></td>
           <td><%= stock.ticker %></td>
           <td><%= stock.name %></td>
-          <td>$<%= stock.last_price %></td>
-          <td><%= link_to 'Add', '#', class:"btn btn-warning btn-sm" %></td>
+          <td><%= number_to_currency(stock.last_price) %></td>
+          <% if !current_user %>
+            <td class="text-center">
+              <%= link_to '#', class:"btn btn-warning btn-sm" do %>
+                <%= fa_icon 'plus', title:"Add" %>
+              <% end %>
+            </td>
+          <% else %>
+            <td class="text-center">
+              <%= link_to user_stock_path(stock), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger btn-sm" do %>
+                <%= fa_icon 'trash', style:"color: black;", title:"Remove" %>
+              <% end %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
