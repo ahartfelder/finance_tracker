@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
   <div class="container">
     <%= link_to 'Finance Tracker', root_path, class:"navbar-brand font-weight-bold" %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,7 +7,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
+        <li class="nav-item <%= 'active' if request.path == my_portfolio_path %>">
           <%= link_to 'My Portfolio', my_portfolio_path, class:"nav-link" %>
         </li>
         <li class="nav-item dropdown">
@@ -24,6 +24,9 @@
       </ul>
       <ul class="navbar-nav navbar-right">
         <% if user_signed_in? %>
+          <li class="nav-item m-1">
+            <%= link_to current_user.email, edit_user_registration_path, class:"nav-link active" %>
+          </li>
           <li class="nav-item m-1">
             <%= link_to 'Logout', destroy_user_session_path, method: :delete, class:"btn btn-danger" %>
           </li>

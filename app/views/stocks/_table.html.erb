@@ -1,0 +1,24 @@
+<% if !@stocks.empty? %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Ticker</th>
+        <th>Company Name</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @stocks.each do |stock| %>
+        <tr>
+          <td>1</td>
+          <td><%= stock.ticker %></td>
+          <td><%= stock.name %></td>
+          <td>$<%= stock.last_price %></td>
+          <td><%= link_to 'Add', '#', class:"btn btn-warning btn-sm" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -1,7 +1,7 @@
 <h1>My Portfolio</h1>
 
 <div class="row">
-  <div class="col-md-7">
+  <div class="col-md-9">
     <%= form_tag search_stock_path, remote: true, method: :get do %>
       <div class="input-group mb-3">
         <%= text_field_tag :stock, params[:stock], class:"form-control form-control-lg", placeholder:"Enter desired ticker...", autofocus: true %>
@@ -12,6 +12,9 @@
         </div>
       </div>
     <% end %>
+
+    <div id="results"></div>
+
+    <%= render 'stocks/table' %>
   </div>
 </div>
-<div id="results"></div>
