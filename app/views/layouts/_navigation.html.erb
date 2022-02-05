@@ -10,9 +10,13 @@
           <li class="nav-item <%= 'active' if request.path == my_portfolio_path %>">
             <%= link_to 'My Portfolio', my_portfolio_path, class:"nav-link" %>
           </li>
+        <% end %>
+      </ul>
+      <ul class="navbar-nav navbar-right">
+        <% if user_signed_in? %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-              Profile
+            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              <%= (fa_icon 'user') + " " + current_user.full_name%>
             </a>
             <div class="dropdown-menu shadow" aria-labelledby="navbarDropdown">
               <%= link_to ((fa_icon 'edit') + " Edit Profile"), edit_user_registration_path, class:"dropdown-item" %>
@@ -20,22 +24,15 @@
               <%= link_to ((fa_icon 'trash') + " Delete User"), user_registration_path, method: :delete, data: { confirm: "Are you sure?" }, class:"dropdown-item text-danger" %>
             </div>
           </li>
-        <% end %>
-      </ul>
-      <ul class="navbar-nav navbar-right">
-        <% if user_signed_in? %>
           <li class="nav-item m-1">
-            <%= link_to ((fa_icon 'user') + " " + current_user.full_name), edit_user_registration_path, class:"nav-link active" %>
-          </li>
-          <li class="nav-item m-1">
-            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class:"btn btn-danger" %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class:"btn btn-danger btn-sm" %>
           </li>
         <% else %>
           <li class="nav-item m-1">
-            <%= link_to 'Login', new_user_session_path, class:"btn btn-success" %>
+            <%= link_to 'Login', new_user_session_path, class:"btn btn-primary" if request.path != new_user_session_path %>
           </li>
           <li class="nav-item m-1">
-            <%= link_to 'Sign Up', new_user_registration_path, class:"btn btn-primary" %>
+            <%= link_to 'Sign Up', new_user_registration_path, class:"btn btn-success" if  request.path != new_user_registration_path %>
           </li>
         <% end %>
       </ul>
