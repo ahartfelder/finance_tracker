@@ -1,0 +1,10 @@
+<%= render 'layouts/messages' %>
+
+<% if @friend %>
+  <div class="card p-2" style="max-width: fit-content;">
+    <span><%= @friend %> (<%= @friend %>)
+    <%= link_to 'Add to Friends', '#', method: :post, class:"btn btn-success btn-sm" %>
+    <%= "#{@friend} is already your friend!" %></span>
+    
+  </div>
+<% end %>
