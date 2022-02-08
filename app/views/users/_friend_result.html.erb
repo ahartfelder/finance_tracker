@@ -1,24 +1,24 @@
 <%= render 'layouts/messages' %>
 
 <% if @friends %>
-  <table class="table">
-    <tbody>
-      <% @friends.each do |friend| %>
-        <tr>
-          <td><strong>Name: </strong><%= friend.full_name %></td>
-          <td><strong>Email: </strong><%= friend.email %></td>
-          <td>
-            <%= link_to (fa_icon 'eye', title:"View Profile"), user_path(friend), class:"btn btn-primary btn-sm" %>
-            <% if current_user.not_friends_with?(friend.id) %>
-              <%= link_to (fa_icon 'plus', title:"Follow User"), friendships_path(friend: friend), method: :post, class:"btn btn-success btn-sm" %>
-            <% else %>
-              <span class="badge badge-secondary">
-                You are friends
-              </span>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="card shadow mb-4">
+    <table class="table table-bordeless">
+      <tbody>
+        <% @friends.each do |friend| %>
+          <tr>
+            <td><strong>Name: </strong><%= friend.full_name %></td>
+            <td><strong>Email: </strong><%= friend.email %></td>
+            <td class="px-0">
+              <%= link_to (fa_icon 'eye'), user_path(friend), class:"btn btn-primary btn-sm", title:"View Profile" %>
+              <% if current_user.not_friends_with?(friend.id) %>
+                <%= link_to (fa_icon 'plus'), friendships_path(friend: friend), method: :post, class:"btn btn-warning btn-sm", title:"Follow User" %>
+              <% else %>
+                <%= fa_icon 'check', class:"btn btn-success btn-sm", title:"You're already friends!" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <% end %>

@@ -1,7 +1,6 @@
 class Stock < ApplicationRecord
   has_many :user_stocks
   has_many :users, through: :user_stocks
-  before_save { self.ticker = ticker.upcase }
 
   validates :name, :ticker, presence: true
 
@@ -11,7 +10,7 @@ class Stock < ApplicationRecord
       endpoint: 'https://sandbox.iexapis.com/v1'
     )
     begin
-      new(ticker: ticker_symbol, name: client.company(ticker_symbol).company_name, last_price: client.price(ticker_symbol))
+      new(ticker: ticker_symbol.upcase, name: client.company(ticker_symbol).company_name, last_price: client.price(ticker_symbol))
     rescue => exception
       nil
     end
