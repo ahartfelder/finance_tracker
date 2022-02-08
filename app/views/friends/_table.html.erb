@@ -18,16 +18,11 @@
           <td><%= friend.first_name %></td>
           <td><%= friend.last_name %></td>
           <td><%= friend.email %></td>
+          <td class="text-center"><%= friend.stocks.count %></td>
           <% if true %>
             <td class="text-center">
-              <%= link_to '#', class:"btn btn-warning btn-sm" do %>
-                <%= fa_icon 'plus', title:"Add" %>
-              <% end %>
-            </td>
-            <td class="text-center">
-              <%= link_to '#', method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger btn-sm" do %>
-                <%= fa_icon 'trash', style:"color: black;", title:"Remove" %>
-              <% end %>
+              <%= link_to (fa_icon 'eye', title:"Follow User"), user_path(friend), class:"btn btn-primary btn-sm" %>
+              <%= link_to (fa_icon 'trash', title:"Remove"), friendship_path(friend), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger btn-sm" %>
             </td>
           <% end %>
         </tr>

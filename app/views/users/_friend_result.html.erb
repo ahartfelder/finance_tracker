@@ -1,10 +1,24 @@
 <%= render 'layouts/messages' %>
 
-<% if @friend %>
-  <div class="card p-2" style="max-width: fit-content;">
-    <span><%= @friend %> (<%= @friend %>)
-    <%= link_to 'Add to Friends', '#', method: :post, class:"btn btn-success btn-sm" %>
-    <%= "#{@friend} is already your friend!" %></span>
-    
-  </div>
+<% if @friends %>
+  <table class="table">
+    <tbody>
+      <% @friends.each do |friend| %>
+        <tr>
+          <td><strong>Name: </strong><%= friend.full_name %></td>
+          <td><strong>Email: </strong><%= friend.email %></td>
+          <td>
+            <%= link_to (fa_icon 'eye', title:"View Profile"), user_path(friend), class:"btn btn-primary btn-sm" %>
+            <% if current_user.not_friends_with?(friend.id) %>
+              <%= link_to (fa_icon 'plus', title:"Follow User"), friendships_path(friend: friend), method: :post, class:"btn btn-success btn-sm" %>
+            <% else %>
+              <span class="badge badge-secondary">
+                You are friends
+              </span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
